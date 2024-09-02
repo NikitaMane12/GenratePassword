@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        font-family: sans-serif;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-image: url("https://tse3.mm.bing.net/th?id=OIP.Ob2FzM6UiQmAOGhiGizAUAHaEQ&pid=Api&P=0&h=180");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: #fff;
+      }
+      .container {
+        margin: 12%;
+        width: 90%;
+        max-width: 700px;
+      }
+      .display {
+        width: 100%;
+        margin-top: 50px;
+        margin-bottom: 30px;
+        background: #fff;
+        color: #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 26px 20px;
+        border-radius: 5px;
+      }
+      .container h1 {
+        font-weight: 500;
+        font-size: 45px;
+      }
+      .container h1 span {
+        color: #019f55;
+        border-bottom: 7px;
+        padding-bottom: 7px;
+      }
+      .container h1 span hr {
+        color: #019f55;
+      }
+      .display img {
+        width: 40px;
+        cursor: pointer;
+      }
+      .display input {
+        border: 0;
+        outline: 0;
+        font-size: 24px;
+        height: 20px;
+      }
+      button {
+        padding: 20px;
+        background-color: #019f55;
+        font-size: 20px;
+        color: white;
+        border-radius: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>
+        Generate a <br /><span>
+          Random Password
+          <hr />
+        </span>
+      </h1>
+      <div class="display">
+        <input type="text" id="Password" placeholder="Password" />
+        <img
+          onclick="copyPassword()"
+          src="https://tse4.mm.bing.net/th?id=OIP.RPc6F3cLp3MNlSkQS8BLcQHaHa&pid=Api&P=0&h=180"
+        />
+      </div>
+      <button onclick="createPassword()">Generate Password</button>
+    </div>
+    <script>
+      const passwordBox = document.getElementById("Password");
+      const length = 12;
+      const upperCase = "ABCDEFGHJKLMNOPQRSTUVWXYZ";
+      const lowerCase = "abcdefghijklmnopqrstuvwxyz";
+      const number = "0123456789";
+      const symbol = "@#$%^&*()_+~|}{[]<>/-=";
+      const allChars = upperCase + lowerCase + number + symbol;
+
+      function createPassword() {
+        let password = "";
+        password += upperCase[Math.floor(Math.random() * upperCase.length)];
+        password += lowerCase[Math.floor(Math.random() * lowerCase.length)];
+        password += number[Math.floor(Math.random() * number.length)];
+        password += symbol[Math.floor(Math.random() * symbol.length)];
+        while (length > password.length) {
+          password += allChars[Math.floor(Math.random() * allChars.length)];
+        }
+        passwordBox.value = password;
+      }
+
+      function copyPassword() {
+        passwordBox.select();
+        document.execCommand("copy");
+      }
+    </script>
+  </body>
+</html>
